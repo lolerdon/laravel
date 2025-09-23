@@ -5,7 +5,4 @@ use App\Http\Controllers\InvoiceController;
 
 Route::get('/', [InvoiceController::class, 'index']);
 
-Route::get('/order', function () {
-    return view('order')
-        ->with('order', request('order'));
-});
+Route::get('/order/{id}', [InvoiceController::class, 'show'])->name('order.show');

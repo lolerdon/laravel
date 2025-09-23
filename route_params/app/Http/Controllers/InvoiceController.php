@@ -12,8 +12,32 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $offertes = [
+            'of12872' => [
+                'offertenummer' => 'of12872',
+                'klant' => 'Van Meer Solutions',
+                'bedrag' => 1500.50
+            ],
+            'of10632' => [
+                'offertenummer' => 'of10632',
+                'klant' => 'Groene vingers',
+                'bedrag' => 1200.00
+            ],
+            'of28003' => [
+                'offertenummer' => 'of28003',
+                'klant' => 'Marios pizza',
+                'bedrag' => 2500.75
+            ],
+            'of10891' => [
+                'offertenummer' => 'of10891',
+                'klant' => 'Blauwwater Consulting',
+                'bedrag' => 1750.00
+            ]
+        ];
+
+        return view('home', compact('offertes'));
     }
+
 
     public function order()
     {
@@ -41,7 +65,37 @@ class InvoiceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $offertes = [
+            'of12872' => [
+                'offertenummer' => 'of12872',
+                'klant' => 'Van Meer Solutions',
+                'bedrag' => 1500.50
+            ],
+            'of10632' => [
+                'offertenummer' => 'of10632',
+                'klant' => 'Groene vingers',
+                'bedrag' => 1200.00
+            ],
+            'of28003' => [
+                'offertenummer' => 'of28003',
+                'klant' => 'Marios pizza',
+                'bedrag' => 2500.75
+            ],
+            'of10891' => [
+                'offertenummer' => 'of10891',
+                'klant' => 'Blauwwater Consulting',
+                'bedrag' => 1750.00
+            ]
+        ];
+
+        // Check if the order exists
+        if (!array_key_exists($id, $offertes)) {
+            abort(404, 'Order not found');
+        }
+
+        return view('order', [
+            'order' => $offertes[$id]
+        ]);
     }
 
     /**
