@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Leveranciers_info;
 use Illuminate\Support\Facades\DB;
+use function Laravel\Prompts\table;
 
 class Vendor extends Controller
 {
@@ -53,7 +54,8 @@ class Vendor extends Controller
      */
     public function show(string $id)
     {
-        //
+        $leverancier = DB::table('leveranciers_info')->where('leveranciersnummer', $id)->first();
+        return view('edit', ['leverancier' => $leverancier]);
     }
 
     /**
@@ -69,7 +71,23 @@ class Vendor extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'bedrijfsnaam' => 'required',
+            'contactpersoon' => 'required',
+            'email' => 'required',
+            'telefoonnummer' => 'required',
+            'adres' => 'required',
+            'postcode' => 'required',
+            'plaats' => 'required',
+            'land' => 'required',
+            'kvk_nummer' => 'required',
+            'bankrekening' => 'required',
+            'bijgewerkt_op' => now(),
+        ]);
+
+//        dd($validatedData);
+        DB::table('leveranciers_info')->where('leveranciersnummer', $id)->update($validatedData);
+        return redirect('/')->with('success', 'Leverancier bijgewerkt');
     }
 
     /**
@@ -77,6 +95,7 @@ class Vendor extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table('leveranciers_info')->where('leveranciersnummer', $id)->delete();
+        return redirect('/')->with('success', 'Leverancier verwijderd');
     }
 }

@@ -11,7 +11,7 @@
 <body>
 {{--create form--}}
 <div class="grid grid-cols-2 grid-flow-col gap-4 ">
-    <div>
+    <div class="">
         <form action="/" method="post" class="grid grid-cols-2 gap-4 p-4 bg-gray-100 ">
             @csrf
             <h1 class="text-3xl text-center col-span-2">Leverancier toevoegen</h1>
@@ -33,7 +33,10 @@
         @foreach($leveranciers as $leverancier)
             <ul>
                 <li class="text-3xl text-center">{{$leverancier->bedrijfsnaam}}</li>
+
                 <div class="grid grid-cols-2 duration-1000 ">
+                    <li class="text-2xl text-center"><a class="" href="/edit/{{$leverancier->leveranciersnummer}}">Bijwerken</a></li>
+                    <li class="text-2xl text-center"><a class="" href="/delete/{{$leverancier->leveranciersnummer}}">Verwijderen</a></li>
                     <p>Contactpersoon:</p>
                     <li class="col-start-2">{{$leverancier->contactpersoon}}</li>
                     <p>Email:</p>
@@ -50,6 +53,8 @@
                     <li class="col-start-2">{{$leverancier->land}}</li>
                     <p>KVK nummer:</p>
                     <li class="col-start-2">{{$leverancier->kvk_nummer}}</li>
+                    <p>BTW nummer:</p>
+                    <li class="col-start-2">{{$leverancier->btw_nummer}}</li>
                     <p>bankrekening:</p>
                     <li class="col-start-2">{{$leverancier->bankrekening}}</li>
                     <p>Aangemaakt op:</p>
