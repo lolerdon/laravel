@@ -55,7 +55,7 @@ class Vendor extends Controller
      */
     public function show(string $id)
     {
-        $leverancier = DB::table('leveranciers_info')->where('leveranciersnummer', $id)->first();
+        $leverancier = DB::table('leveranciers_info')->where('leveranciersnummer', $id)->firstOrFail();
         return view('edit', ['leverancier' => $leverancier]);
     }
 
