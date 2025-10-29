@@ -41,6 +41,7 @@ class Vendor extends Controller
             'postcode' => 'required',
             'plaats' => 'required',
             'land' => 'required',
+            'btw_nummer' => 'required',
             'kvk_nummer' => 'required',
             'bankrekening' => 'required',
         ]);
@@ -71,6 +72,7 @@ class Vendor extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $validatedData = $request->validate([
             'bedrijfsnaam' => 'required',
             'contactpersoon' => 'required',
@@ -82,10 +84,10 @@ class Vendor extends Controller
             'land' => 'required',
             'kvk_nummer' => 'required',
             'bankrekening' => 'required',
-            'bijgewerkt_op' => now(),
+            'bijgewerkt_op' => 'required',
         ]);
 
-//        dd($validatedData);
+
         DB::table('leveranciers_info')->where('leveranciersnummer', $id)->update($validatedData);
         return redirect('/')->with('success', 'Leverancier bijgewerkt');
     }

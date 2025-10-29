@@ -34,6 +34,7 @@
     <input type="text" name="btw_nummer" value="{{$leverancier->btw_nummer}}">
     <p>Bankrekening</p>
     <input type="text" name="bankrekening" value="{{$leverancier->bankrekening}}">
+    <input type="hidden" name="bijgewerkt_op" value="{{now()}}"/>
     <br>
     <input type="submit" value="Bijwerken" class="bg-blue-500 text-white p-2 col-span-2 hover:bg-blue-700 cursor-pointer">
 </form>

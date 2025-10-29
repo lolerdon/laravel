@@ -24,6 +24,7 @@
             <input type="text" name="plaats" placeholder="plaats" required>
             <input type="text" name="land" placeholder="land" required>
             <input type="text" name="kvk_nummer" placeholder="kvk_nummer" required>
+            <input type="text" name="btw_nummer" placeholder="btw_nummer" required>
             <input type="text" name="bankrekening" placeholder="bankrekening" required>
             <input type="submit" value="Toevoegen" class="bg-blue-500 text-white p-2 col-span-2 hover:bg-blue-700 cursor-pointer">
         </form>
